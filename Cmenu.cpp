@@ -2,19 +2,18 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <string.h>
+/*STRUCT de cadastro*/
 typedef struct cadastro
 {
 	char nome[40], telefone[14], email[25];
     int idade;
     
 }cadastro;
-
+/* VARIAVEIS GLOBAIS */
 	cadastro agenda[4];
 	int opc, i=0, tamanho, aux;
 	char sair, voltar, busca[40];
-/*Exibir:
-Cadastrar pessoa (nome, telefone, email, idade).
-*/
+/*CADASTRAR PESSOAS*/
 int cadastrar_pessoa(){
 	for(i=aux;i<4;i++){
 		tamanho = (strlen(agenda[i].nome));
@@ -52,9 +51,7 @@ int cadastrar_pessoa(){
 	}	
 	
 }
-/*Pesquisar:
-Pesquisar pelo nome de um usuário. Exiba todas as informações de pessoas com o nome pesquisado
-*/
+/*PESQUISAR PELO NOME (exibir todas informações do usuário)*/
 int pesquisar_pessoa(){
 	int teste = 0;
 	
@@ -70,15 +67,36 @@ int pesquisar_pessoa(){
 				printf("Email: %s\n", agenda[i].email);
 				printf("Idade: %d\n", agenda[i].idade);	
 				teste = 1;
+				printf("Deseja voltar ao menu principal? (S/N): ");
+				fflush(stdin);
+				scanf("%c",&voltar);
+				if(voltar == 'n'){
+					system("cls");
+					pesquisar_pessoa();
+				}
+				else{
+					system("cls");
+				}
+			}
+			teste = teste + 1;
+			if(teste == 4 ){
+				printf("Essa pessoa não existe!\n");
+				printf("Deseja voltar ao menu principal? (S/N): ");
+				fflush(stdin);
+				scanf("%c",&voltar);
+					if(voltar == 'n'){
+						system("cls");
+						pesquisar_pessoa();
+					}
+					else{
+						system("cls");
+					}
 			}
 		}
-		if(teste == 0 ){
-			printf("Pessoa nao cadastrada ou nome incorreto!\n");
-		}
+		
+
 }
-/*Exibir:
-Exiba todas as informações de pessoas da agenda eletrônica.
-*/
+/*EXIBIR TODAS INFORMAÇÕES DOS CADASTRADOS NA AGENDA*/
 int exibir_pessoa(){
 	
 	for(i=0;i<aux;i++){
@@ -86,9 +104,7 @@ int exibir_pessoa(){
 	}
 }
 
-/*Exibir:
-PROGRAMA PRINCIPAL
-*/
+/*PROGRAMA PRINCIPAL*/
 int main()
 {
 	setlocale(LC_ALL, "Portuguese");
