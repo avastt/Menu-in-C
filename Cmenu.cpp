@@ -11,13 +11,15 @@ typedef struct cadastro
 }cadastro;
 /* VARIAVEIS GLOBAIS */
 	cadastro agenda[4];
-	int opc, i=0, tamanho, aux;
+	int opc, i=0, tamanho, aux=0, contador=0;
 	char sair, voltar, busca[40];
 /*CADASTRAR PESSOAS*/
-int cadastrar_pessoa(){
-	for(i=aux;i<4;i++){
+int cadastrar_pessoa()
+{
+	for(i=aux;i<4;i++)
+	{
 		tamanho = (strlen(agenda[i].nome));
-		if((tamanho == 0) && (agenda[i].nome != '\0'))
+		if((tamanho == 0) && (agenda[i].nome != '\0') && (contador != 4))
 		{
 			printf("Informe o nome: ");
 			scanf("%s",agenda[i].nome);
@@ -27,6 +29,7 @@ int cadastrar_pessoa(){
 			scanf("%s",agenda[i].email); 
 			printf("Informe a idade: ");
 			scanf("%d",&agenda[i].idade);
+			contador = contador + 1;
 			printf("Deseja voltar ao menu principal? (S/N): ");
 			fflush(stdin);
 			scanf("%c",&voltar);
@@ -45,11 +48,16 @@ int cadastrar_pessoa(){
 							printf("A agenda está cheia, digite (S) para voltar ao menu ");
 							fflush(stdin);
 							scanf("%c",&voltar);
+							system("cls");
 						}
 					}
 		}
+		else if (contador == 4)
+		{
+			printf("O cadastro está cheio!\n");
+			break;
+		}
 	}	
-	
 }
 /*PESQUISAR PELO NOME (exibir todas informações do usuário)*/
 int pesquisar_pessoa(){
@@ -70,36 +78,40 @@ int pesquisar_pessoa(){
 				printf("Deseja voltar ao menu principal? (S/N): ");
 				fflush(stdin);
 				scanf("%c",&voltar);
-				if(voltar == 'n'){
+				if(voltar == 'n')
+				{
 					system("cls");
 					pesquisar_pessoa();
 				}
-				else{
+				else
+				{
 					system("cls");
 				}
 			}
 			teste = teste + 1;
-			if(teste == 4 ){
+			if(teste == 4 )
+			{
 				printf("Essa pessoa não existe!\n");
 				printf("Deseja voltar ao menu principal? (S/N): ");
 				fflush(stdin);
 				scanf("%c",&voltar);
-					if(voltar == 'n'){
+					if(voltar == 'n')
+					{
 						system("cls");
 						pesquisar_pessoa();
 					}
-					else{
+					else
+					{
 						system("cls");
 					}
 			}
 		}
-		
-
 }
 /*EXIBIR TODAS INFORMAÇÕES DOS CADASTRADOS NA AGENDA*/
-int exibir_pessoa(){
-	
-	for(i=0;i<aux;i++){
+int exibir_pessoa()
+{
+	for(i=0;i<aux;i++)
+	{
 		printf("Nome: %s\n Telefone: %s\n Email: %s\n Idade: %d\n", agenda[i].nome, agenda[i].telefone, agenda[i].email, agenda[i].idade);
 	}
 }
