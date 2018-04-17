@@ -86,6 +86,7 @@ int pesquisar_pessoa(){
 				else
 				{
 					system("cls");
+					break;
 				}
 			}
 			teste = teste + 1;
@@ -103,6 +104,8 @@ int pesquisar_pessoa(){
 					else
 					{
 						system("cls");
+						break;
+						
 					}
 			}
 		}
