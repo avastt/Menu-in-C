@@ -62,10 +62,10 @@ int cadastrar_pessoa()
 /*PESQUISAR PELO NOME (exibir todas informações do usuário)*/
 int pesquisar_pessoa(){
 	int teste = 0;
-	
+	i=0;
 	printf("Digite o nome de quem deseja procurar: ");
 	scanf("%s",busca);
-		for (i=0;i<4;i++)
+		while (i<4)
 		{
 			if(strcmp(busca,agenda[i].nome) ==0)
 			{
@@ -82,6 +82,7 @@ int pesquisar_pessoa(){
 				{
 					system("cls");
 					pesquisar_pessoa();
+					break;
 				}
 				else
 				{
@@ -90,7 +91,9 @@ int pesquisar_pessoa(){
 				}
 			}
 			teste = teste + 1;
-			if(teste == 4 )
+			i++;
+		}
+			if(teste == 4)
 			{
 				printf("Essa pessoa não existe!\n");
 				printf("Deseja voltar ao menu principal? (S/N): ");
@@ -100,15 +103,13 @@ int pesquisar_pessoa(){
 					{
 						system("cls");
 						pesquisar_pessoa();
+						
 					}
 					else
 					{
 						system("cls");
-						break;
-						
 					}
 			}
-		}
 }
 /*EXIBIR TODAS INFORMAÇÕES DOS CADASTRADOS NA AGENDA*/
 int exibir_pessoa()
